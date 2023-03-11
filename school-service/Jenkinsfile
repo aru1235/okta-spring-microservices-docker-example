@@ -37,5 +37,21 @@ pipeline {
                 }
             }
         }
+
+        stage('Integrate Jenkins with EKS Cluster and Deploy App') {
+            steps {
+                withAWS(credentials: 'aws-credentials', region: 'ap-south-1') {
+                  script {
+                    sh ('aws eks update-kubeconfig --name new2-cluster --region ap-south-1')
+                    sh 'ls -la'
+                    dir('account-service'){
+                    sh "kubectl apply -f Deployment.yaml"
+
+                    }
+                }
+             }
+        }
+    }
+
     }
 }
