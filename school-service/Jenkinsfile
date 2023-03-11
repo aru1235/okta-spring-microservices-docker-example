@@ -44,7 +44,7 @@ pipeline {
                   script {
                     sh ('aws eks update-kubeconfig --name new2-cluster --region ap-south-1')
                     sh 'ls -la'
-                    dir('account-service'){
+                    dir('school-service'){
                     sh "kubectl apply -f Deployment.yaml"
 
                     }
