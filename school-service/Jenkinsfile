@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls -la'
-                dir('account-service'){
+                dir('school-service'){
                 sh 'mvn clean package'
                 }
             }
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Docker Image Build') {
             steps {
-                dir('account-service'){
+                dir('school-service'){
                 sh 'docker build -t new-ecr .'
                 }
             }
